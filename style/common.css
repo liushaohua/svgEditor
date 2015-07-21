@@ -1,0 +1,115 @@
+@charset "utf-8";
+*{
+	margin:0;
+	padding:0;
+	
+}
+body{
+	font-size:12px;
+	font-family:"微软雅黑";
+}
+ul{
+	list-style:none;
+}
+#box{
+	border-radius:10px;
+	width:800px;
+	height:600px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-400px;
+	margin-top:-300px;
+	background:#eeeeee;
+}
+#list {
+	width:100px;
+	float:left;
+}
+#list h3{
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	font-size:24px;
+}
+#list #select {
+		overflow:hidden;
+		margin-top:50px;
+}
+#list #select li{
+	float:left;
+	margin-left:8px;
+	width:40px;
+	height:40px;
+	overflow:hidden;
+	margin-bottom:10px;
+	cursor:pointer;
+}
+#list #select li:hover{
+}
+#showBox{
+	width:700px;
+	float:left;
+}
+#showBox h3{
+	height:100px;
+}
+#showBox svg{
+	width:680px;
+	background:white;
+	height:460px;
+}
+
+#selectEleBox{
+	width:200px;
+	height:200px;
+	background:#ccc;
+	position:absolute;
+	left:0;
+	top:0;
+}
+
+#selectEleBox ul {
+	width:100%;
+	height:160px;
+	overflow:hidden;
+}
+
+#selectEleBox ul li{
+	display:block;
+	float:left;
+	padding: 0 5px;
+	height:20px;
+	border:1px solid #fff;
+	text-align:center;
+	line-height:20px;
+	margin-left:5px;
+	margin-top:5px;
+}
+#selectEleBox ul li:hover{
+	background:#eee;
+}
+
+#selectEleBox div {
+	width:100%;
+	height:40px;
+	overflow:hidden;
+}
+#selectEleBox div input[type="text"]{
+	height:20px;
+	line-height:20px;
+}
+#selectEleBox div input {
+	outline:none;
+	font-size:16px;
+	width:80px;
+	margin-left:5px;
+	height:24px;
+	line-height:24px;
+}
+#selectLengthBox {
+	background:#ccc;
+	position:absolute;
+	left:0;
+	top:0;
+}

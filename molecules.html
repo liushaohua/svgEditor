@@ -1,0 +1,422 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>molecules</title>
+<style>
+	html, body {
+		height: 100%;
+	}
+
+	body {
+		background-color: #ffffff;
+		margin: 0;
+		font-family: Arial;
+		overflow: hidden;
+	}
+	#title{
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		width: 100%;
+		text-align: right;
+		padding: 0;
+		margin: 0;
+		z-index: 1;
+	}
+	#title div{
+		display:inline-block;
+		color: rgb(255,255,255);
+		background: transparent;
+		border: 0px;
+		padding: 5px 10px;
+		cursor: pointer;
+		font-size:14px;
+	}
+	#button_box{
+		width:100%;
+		position:absolute;
+		bottom:30px;
+		height:36px;
+		line-height:36px;
+		text-align:center;
+		font-size:12px;
+	}
+	#button_box div{
+		display:inline-block;
+		height:36px;
+		color:rgba(255,255,255,1);
+		padding:0 10px;
+		text-align:center;
+		cursor:pointer;
+	}
+	#title div:hover,#button_box div:hover{
+		background:rgba(0,127,127,0.5);
+	}
+	canvas{
+		background:#000;
+	}
+</style>
+</head>
+
+<body>
+	<div id="title">
+    	<div id="show_a">Atoms</div>
+    	<div id="show_b">Bonds</div>
+    	<div id="show_c">Atoms+Bonds</div>
+    </div>
+	<div id="button_box">
+    </div>
+	<script src="javascript/three.min.js"></script>
+    <script>
+		THREE.Camera.prototype.direction = new THREE.Vector3();
+		THREE.Camera.prototype.lookAt = function () {
+			var m1 = new THREE.Matrix4();	
+			return function ( vector ) {			
+				this.direction = vector;
+				m1.lookAt( this.position, vector, this.up );
+							
+				if ( this.useQuaternion === true ) {			
+					this.quaternion.setFromRotationMatrix( m1 );			
+				} else {			
+					this.rotation.setEulerFromRotationMatrix( m1, this.eulerOrder );			
+				}			
+			};			
+		}();
+    </script>
+    <script src="javascript/OrbitControls.js"></script>
+    <script src="javascript/PDBLoader.js"></script>
+	<script>
+	var fileName = window.opener.fileName;
+	//fileName = 'buckyball.pdb';
+	console.log(fileName)
+		function noSelect (dom)
+		{
+			dom.style.webkitUserSelect = "none";
+			dom.style.mozUserSelect = "none";
+			dom.style.userSelect = "none";
+			dom.style.outline = 'none';
+			/*
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			user-select: none;
+			*/
+		}
+		function getMap(url)
+		{
+			var map = new THREE.Texture();
+			var loader = new THREE.ImageLoader();
+	
+			loader.addEventListener( 'load', function ( event ) {
+	
+				map.image = event.content;
+				map.needsUpdate = true;
+	
+			} );
+		
+			loader.load( url );
+			
+			return map;
+		}
+		
+		var oButtonBox = document.getElementById('button_box');
+		var renderer = new THREE.WebGLRenderer({antialias: true});
+		var targets = { table: [], sphere: [], helix: [], grid: [] };
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		document.body.appendChild( renderer.domElement );
+		
+		noSelect(renderer.domElement);
+		var objects = [];
+		var lines = [];
+		var show_type = 0;
+		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 30000 );
+		camera.position.z = 4000;
+		/*控制照相机视角*/
+		var control = new THREE.OrbitControls(camera ,renderer.domElement);
+		control.addEventListener( 'change', render);
+		
+		var scene = new THREE.Scene();
+		
+		var MOLECULES = {
+			
+		};
+
+		var loader = new THREE.PDBLoader();
+		
+		
+		
+		createMenu();
+		function createMenu() {
+
+			/*for ( var m in MOLECULES ) {
+
+				var button = document.createElement( 'div' );
+				button.innerHTML = m;
+				oButtonBox.appendChild( button );
+
+				var url = "models/" +  MOLECULES[ m ];
+
+				button.addEventListener( 'click', generateButtonCallback( url ), false );
+
+			}*/
+			loadMolecule( "models/"+fileName );
+		}
+		
+		function generateButtonCallback( url ) {
+			return function ( event ) {
+
+				loadMolecule( url );
+
+			}
+
+		}
+		
+		function loadMolecule( url ) {
+			
+			for ( var i = 0; i < objects.length; i ++ ) {
+
+				var object = objects[ i ];
+				object.parent.remove( object );
+
+			}
+
+			objects = [];
+			
+			for ( var i = 0; i < lines.length; i ++ ) {
+			
+				var line = lines[ i ];
+				if( !line.visible )break;
+				line.parent.remove( line );
+			
+			}
+
+			lines = [];
+			
+			
+			loader.load( url, function ( geometry, geometryBonds ) {
+
+				//var offset = THREE.GeometryUtils.center( geometry );
+				//geometryBonds.applyMatrix( new THREE.Matrix4().makeTranslation( offset.x, offset.y, offset.z ) );
+				for ( var i = 0; i < geometry.vertices.length; i ++ ) {
+					
+					var position = geometry.vertices[ i ];
+					var color = geometry.colors[ i ];
+					var element = geometry.elements[ i ];
+					position.multiplyScalar( 10 );
+					
+					var sphereGeometry = new THREE.SphereGeometry (100, 50, 50);
+					var material = new THREE.MeshBasicMaterial( { color: color, opacity:1,transparent:true, side: THREE.DoubleSide} );
+				
+					var object = new THREE.Mesh( sphereGeometry, material );
+					object.position.copy( position );
+					
+					objects.push( object );
+					scene.add( object );
+
+				}
+				
+				for ( var i = 0; i < geometryBonds.vertices.length; i += 4 ) {
+					
+					var start = geometryBonds.vertices[ i ];
+					var end = geometryBonds.vertices[ i + 1 ];
+					var count = geometryBonds.vertices[ i + 2 ];
+					var reg = geometryBonds.vertices[ i + 3 ]*Math.PI/180;
+					start.multiplyScalar( 10 );
+					end.multiplyScalar( 10 );
+					
+					//var off = new THREE.Vector3(end.x-start.x, end.y-start.y, end.z-start.z);
+					
+					 var materials = [
+						new THREE.MeshLambertMaterial( {   side: THREE.DoubleSide } ),
+						new THREE.MeshBasicMaterial( { color: 0xffffff,  side: THREE.DoubleSide } )
+					];
+					var geometry = new THREE.CylinderGeometry( 10, 10, end.clone().sub(start).length(), 40, 5 );
+					
+					geometry.applyMatrix( new THREE.Matrix4().setRotationFromEuler( new THREE.Vector3( Math.PI / 2, Math.PI, 0 ) ) );
+					
+					if( count <= 1 ) {
+						
+						var line = THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+						
+						var center = new THREE.Vector3((start.x+end.x)/2, (start.y+end.y)/2, (start.z+end.z)/2 );
+						
+						line.position.copy( center );
+						line.lookAt( start );
+						scene.add( line );
+						lines.push( line )
+						
+					}
+					else if( count == 2 ) {
+						
+							var thisStart = start.clone();
+							var thisEnd = end.clone();
+							var l = 30;
+							thisStart.x -= l*Math.sin(reg);
+							thisEnd.x -= l*Math.sin(reg);
+							thisStart.y -= l*Math.cos(reg);
+							thisEnd.y -= l*Math.cos(reg);
+							
+							var line = THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+						
+							var center = new THREE.Vector3((thisStart.x+thisEnd.x)/2, (thisStart.y+thisEnd.y)/2, (start.z+end.z)/2 );
+							
+							
+							line.position.copy( center );
+							line.lookAt( thisStart );
+							scene.add( line );
+							lines.push( line )
+							
+							
+							var thisStart = start.clone();
+							var thisEnd = end.clone();
+							thisStart.x += l*Math.sin(reg);
+							thisEnd.x += l*Math.sin(reg);
+							thisStart.y += l*Math.cos(reg);
+							thisEnd.y += l*Math.cos(reg);
+							
+							var line = THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+						
+							var center = new THREE.Vector3((thisStart.x+thisEnd.x)/2, (thisStart.y+thisEnd.y)/2, (start.z+end.z)/2 );
+							
+							line.position.copy( center );
+							line.lookAt( thisStart );
+							scene.add( line );
+							lines.push( line )
+							
+					}
+					
+					else if( count == 3 ) {
+						
+						var line = THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+						
+						var center = new THREE.Vector3((start.x+end.x)/2, (start.y+end.y)/2, (start.z+end.z)/2 );
+						
+						line.position.copy( center );
+						line.lookAt( start );
+						scene.add( line );
+						lines.push( line )
+						
+						var thisStart = start.clone();
+						var thisEnd = end.clone();
+						var l = 40;
+						thisStart.x -= l*Math.sin(reg);
+						thisEnd.x -= l*Math.sin(reg);
+						thisStart.y -= l*Math.cos(reg);
+						thisEnd.y -= l*Math.cos(reg);
+						
+						var line = THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+					
+						var center = new THREE.Vector3((thisStart.x+thisEnd.x)/2, (thisStart.y+thisEnd.y)/2, (start.z+end.z)/2 );
+						
+						
+						line.position.copy( center );
+						line.lookAt( thisStart );
+						scene.add( line );
+						lines.push( line )
+						
+						
+						var thisStart = start.clone();
+						var thisEnd = end.clone();
+						thisStart.x += l*Math.sin(reg);
+						thisEnd.x += l*Math.sin(reg);
+						thisStart.y += l*Math.cos(reg);
+						thisEnd.y += l*Math.cos(reg);
+						
+						var line = THREE.SceneUtils.createMultiMaterialObject( geometry, materials );
+					
+						var center = new THREE.Vector3((thisStart.x+thisEnd.x)/2, (thisStart.y+thisEnd.y)/2, (start.z+end.z)/2 );
+						
+						line.position.copy( center );
+						line.lookAt( thisStart );
+						scene.add( line );
+						lines.push( line )
+						
+						
+					}
+					
+					
+				}
+				
+				switch(show_type)
+				{
+					case 1:show_a();break;
+					case 2:show_b();break;
+					case 3:show_c();break;
+				}
+				//console.log( scene );
+				render();
+
+			} );
+
+
+		}
+		
+		function show_a()
+		{
+			for(var i=0;i<objects.length;i++)
+			{
+				objects[i].visible = true;
+			}
+			for(var i=0;i<lines.length;i++)
+			{
+				lines[i].visible = false;
+				scene.remove(lines[i]);
+			}
+		}
+		
+		function show_b()
+		{
+			for(var i=0;i<objects.length;i++)
+			{
+				objects[i].visible = false;
+			}
+			for(var i=0;i<lines.length;i++)
+			{
+				lines[i].visible = true;
+				scene.add(lines[i]);
+			}
+		}
+		
+		function show_c()
+		{
+			for(var i=0;i<objects.length;i++)
+			{
+				objects[i].visible = true;
+			}
+			for(var i=0;i<lines.length;i++)
+			{
+				lines[i].visible = true;
+				scene.add(lines[i]);
+			}
+		}
+		document.getElementById('show_a').addEventListener('click', function(){show_type = 1;show_a();}, false);
+		document.getElementById('show_b').addEventListener('click', function(){show_type = 2;show_b();}, false);
+		document.getElementById('show_c').addEventListener('click', function(){show_type = 3;show_c();}, false);
+		
+		window.addEventListener('resize', onWindowResize  , false);
+		
+		function onWindowResize()
+		{
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
+
+			renderer.setSize( window.innerWidth, window.innerHeight );
+
+		}
+		
+		animate();
+		function animate()
+		{
+			control.update();
+			render();
+		 	
+			requestAnimationFrame( animate );
+		}
+		
+		function render()
+		{
+			renderer.render( scene, camera );	
+		}
+    </script>
+</body>
+</html>
