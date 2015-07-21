@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Svgeditor by liushaohua</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://raw.githubusercontent.com/liushaohua/svgEditor/master/style/common.css"/>
   </head>
   <body>
     <section class="page-header">
@@ -13,7 +14,213 @@
       <a href="https://github.com/liushaohua/svgEditor/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/liushaohua/svgEditor/tarball/master" class="btn">Download .tar.gz</a>
     </section>
-    <iframe width="1000" height="1000" src="https://raw.githubusercontent.com/liushaohua/svgEditor/master/index.html"></iframe>
+    <div id="box">
+      <div id="list">
+        <h3>Editor</h3>
+        <ul id="select">
+          <li><img src="image/14.png" width="40" alt="" /></li>
+          <li><img id="selectEle" src="image/9.png" content = "H" width="40" alt="" /></li>
+          <li><img src="image/12.png" width="40" alt="" /></li>
+          <li><img src="image/2.png" width="40" alt="" /></li>
+          <li><img src="image/13.png" width="40" alt="" /></li>
+          <li><img src="image/11.png" width="40" alt="" /></li>
+          <li><img src="image/1.png" width="40" alt="" /></li>
+          <li><img src="image/10.png" width="40" alt="" /></li>
+          <li><img id="selectLength" src="image/6.png" len = "6" width="40" alt="" /></li>
+        </ul>
+        <div id="selectEleBox" style="display:none;">
+          <ul>
+            <li>H</li>
+            <li>C</li>
+            <li>O</li>
+          </ul>
+          <div>
+            <input type="text" id="selectTxt" /><input value="add" type="button" id="selectBtn" />
+          </div>
+        </div>
+        <div id="selectLengthBox" style= "display: none;">
+          <select>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+          </select>
+        </div>
+      </div>
+      <div id="showBox">
+        <h3></h3>
+        <svg currentscale="1" width="680px" height="460px" viewBox="0 0 680 460">
+          <g id="canvas" >
+            <g id="show" tranfrom = "matrix(5,0,0,5,5,5)"></g>
+            <g id="bg"></g>
+            <g id="circle"></g>
+            <g id="ele"></g>
+          </g>
+        </svg>
+        <div>
+          <div style="float:left;">
+            <input type="button" style = "width:120px;  height:30px; margin-top:5px;" value="撤销" />
+          </div>
+          <div style="float:right;">
+            <input id="postContent" type="button" style = "width:120px;  height:30px; margin-right:20px; margin-top:5px;"; id = "console" value="导出PDB文件" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/liushaohua/svgEditor/master/javascript/Paint.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/liushaohua/svgEditor/master/javascript/common.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/liushaohua/svgEditor/master/javascript/index.js"></script>
+    <script type="text/javascript" src="https://raw.githubusercontent.com/liushaohua/svgEditor/master/javascript/Word.js"></script>
+    <script>
+
+
+      var selectEle = document.getElementById('selectEle');
+      var selectEleBox = document.getElementById('selectEleBox');
+      var aSelectEle = selectEleBox.getElementsByTagName('li');
+      var selectTxt = document.getElementById('selectTxt');
+      var selectBtn = document.getElementById('selectBtn');
+
+      for(var i = 0;i<aSelectEle.length;i++) {
+        aSelectEle[i].addEventListener('click', function (){
+          selectEle.setAttribute( 'content', this.innerHTML );
+          selectEleBox.style.display = 'none';
+        },false);
+      }
+      selectBtn.addEventListener('click', function(){
+        if(selectTxt.value !== '') {
+          oLi = document.createElement('li');
+          oLi.innerHTML = selectTxt.value;
+          selectTxt.value = '';
+          oLi.addEventListener('click', function (){
+            selectEle.setAttribute( 'content', this.innerHTML );
+            selectEleBox.style.display = 'none';
+          },false);
+          selectEleBox.getElementsByTagName('ul')[0].appendChild(oLi);
+        }
+      },false);
+
+      selectEle.addEventListener('click', function (){
+        if(selectEleBox.style.display == 'none') {
+          selectEleBox.style.display = 'block';
+          selectEleBox.style.left = (this.offsetLeft+40)+'px';
+          selectEleBox.style.top = this.offsetTop+'px';
+        }
+        else{
+          selectEleBox.style.display = 'none';
+        }
+
+      },false);
+
+      var selectLength = document.getElementById('selectLength');
+      var selectLengthBox = document.getElementById('selectLengthBox');
+      selectLengthBox.getElementsByTagName('select')[0].value = '6';
+      selectLengthBox.getElementsByTagName('select')[0].addEventListener('change', function () {
+        selectLength.setAttribute( 'len', this.value );
+      }, false);
+
+      selectLength.addEventListener('click', function (){
+        if(selectLengthBox.style.display == 'none') {
+          selectLengthBox.style.display = 'block';
+          selectLengthBox.style.left = (this.offsetLeft+40)+'px';
+          selectLengthBox.style.top = (this.offsetTop+10)+'px';
+        }
+        else{
+          selectLengthBox.style.display = 'none';
+        }
+
+      },false);
+
+
+      var oCanvas = document.getElementsByTagName('svg')[0];
+
+      oCanvas.addEventListener( 'mousedown', fnContextmenu, false );
+      oCanvas.addEventListener( 'contextmenu', function(ev){ev.preventDefault()}, false );
+      oCanvas.addEventListener( 'mousewheel', fnMouseWheel, false );
+
+      var svgViewBoxWidth = oCanvas.offsetWidth,
+              svgViewBoxHeight = oCanvas.offsetHeight,
+              svgViewLeft = 0,
+              svgViewTop = 0,
+              Rate = 1.1;
+
+      function fnContextmenu( ev ) {
+        if( ev.button !== 2 )return false;
+        var viewBox = oCanvas.getAttribute('viewBox');
+        var viewBoxValues = viewBox.split(' ');
+        viewBoxValues[0] = parseFloat( viewBoxValues[0] );
+        viewBoxValues[1] = parseFloat( viewBoxValues[1] );
+        viewBoxValues[2] = parseFloat( viewBoxValues[2] );
+        viewBoxValues[3] = parseFloat( viewBoxValues[3] );
+
+        var downX = ev.clientX,
+                downY = ev.clientY,
+                disX = 0,
+                disY = 0;
+        function fnMove ( ev ){
+
+          disX = (downX - ev.clientX)/2;
+          disY = (downY - ev.clientY)/2;
+
+          oCanvas.addEventListener( 'mouseout', function (){
+            return;
+          }, false );
+          oCanvas.setAttribute( 'viewBox', ((viewBoxValues[0]+disX) +' '+(viewBoxValues[1]+disY) +' '+viewBoxValues[2] +' '+viewBoxValues[3]) );
+
+        }
+
+        function fnUp (){
+          svgViewLeft += disX;
+          svgViewTop += disY;
+          document.removeEventListener( 'mousemove', fnMove, false );
+          document.removeEventListener( 'mouseup', fnUp, false );
+        }
+
+        document.addEventListener( 'mousemove', fnMove, false );
+        document.addEventListener( 'mouseup', fnUp, false );
+        ev.preventDefault();
+      }
+      var lScale = 1, tScale = 1;
+      function fnMouseWheel( ev ) {
+        var viewBox = oCanvas.getAttribute('viewBox');
+        var viewBoxValues = viewBox.split(' ');
+        viewBoxValues[0] = parseFloat( viewBoxValues[0] );
+        viewBoxValues[1] = parseFloat( viewBoxValues[1] );
+        viewBoxValues[2] = parseFloat( viewBoxValues[2] );
+        viewBoxValues[3] = parseFloat( viewBoxValues[3] );
+
+        //以原点为中心进行缩放
+        if ( ev.wheelDelta > 0 ){//toBig
+
+          viewBoxValues[2]/=Rate;
+          viewBoxValues[3]/=Rate;
+          lScale = svgViewBoxWidth / viewBoxValues[2] ;
+          tScale = svgViewBoxHeight / viewBoxValues[3] ;
+
+        }
+        else{//toSmall
+
+          viewBoxValues[2]*=Rate;
+          viewBoxValues[3]*=Rate;
+          lScale = svgViewBoxWidth / viewBoxValues[2];
+          tScale = svgViewBoxHeight / viewBoxValues[3];
+
+        }
+        resetSvgPosition();
+        oCanvas.setAttribute( 'viewBox', (viewBoxValues[0] +' '+viewBoxValues[1] +' '+viewBoxValues[2] +' '+viewBoxValues[3]) );
+
+        ev.cancelBubble = true;
+        return false;
+      }
+
+    </script>
   </body>
 </html>
 
