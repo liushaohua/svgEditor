@@ -1,0 +1,43 @@
+.b5m-activity-wrapper{
+  display: block;
+  z-index: 2147483646;
+  width: 100%;
+  height: 75px;
+  background: #A3D2FE;
+  cursor: pointer;
+  display: none;
+}
+.b5m-activity905-mask {
+  display: block;
+  z-index: 2147483646;
+  width: 100%;
+  height: 75px;
+  background: #A3D2FE;
+  cursor: pointer;
+  display: none;
+}
+
+.b5m-activity-wrapper-horizontal {
+  position: fixed;
+  _position: absolute;
+  width: 100%;
+  height: 90px;
+  left: 50%;
+  margin-left: -500px;
+  cursor: pointer;
+}
+.b5m-activity-wrapper-horizontal .b5m-btn-shutdown {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 0px;
+    left: 966px;
+}
+
+.b5m-activity-wrapper-horizontal-bot, .b5m-activity-mask-horizontal-bot {
+  bottom: 0;
+}
+
+.b5m-activity-wrapper-horizontal-top, .b5m-activity-mask-horizontal-top {
+  top: 0;
+}

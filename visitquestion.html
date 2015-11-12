@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://lmn.anhaofour.cn/visit/visitquestion?tid=57&vid=212&uid=10058 -->
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+     <!--<link href="/static/vendors/jquery/jquery-ui.css" rel="stylesheet">
+     <script src="/static/vendors/jquery/jquery-ui.js"></script>-->
+      <!--时间选择 插件 开始 -->
+    <script src="./visitquestion_files/jquery-1.11.2.min.js"></script>
+         <script src="./visitquestion_files/mobiscroll.zepto.js"></script>
+        <script src="./visitquestion_files/mobiscroll.core.js"></script>
+        <script src="./visitquestion_files/mobiscroll.frame.js"></script>
+        <script src="./visitquestion_files/mobiscroll.scroller.js"></script>
+        <script src="./visitquestion_files/mobiscroll.util.datetime.js"></script>
+        <script src="./visitquestion_files/mobiscroll.datetimebase.js"></script>
+        <script src="./visitquestion_files/mobiscroll.datetime.js"></script>
+        <script src="./visitquestion_files/mobiscroll.i18n.zh.js"></script>
+        <script src="./visitquestion_files/mobiscroll.android-holo-light.js"></script>
+        <script src="./visitquestion_files/mobiscroll.mobiscroll-dark.js"></script>
+        <link href="./visitquestion_files/mobiscroll.animation.css" rel="stylesheet" type="text/css">
+        <link href="./visitquestion_files/mobiscroll.frame.css" rel="stylesheet" type="text/css">
+        <link href="./visitquestion_files/mobiscroll.frame.android-holo.css" rel="stylesheet" type="text/css">
+        <link href="./visitquestion_files/mobiscroll.scroller.css" rel="stylesheet" type="text/css">
+        <link href="./visitquestion_files/mobiscroll.android-holo-light.css" rel="stylesheet" type="text/css">
+    <!-- 时间选择 插件 结束 -->
+    <script src="./visitquestion_files/layer.m.js"></script><link href="./visitquestion_files/layer.css" type="text/css" rel="styleSheet" id="layermcss">
+
+
+    <style>
+        body{margin: 0; padding: 0;font-family:"Helvetica";font-size:62.5%; }
+        textarea{height: auto;resize: none;}
+        input[type="text"]{height: 1.875rem;}
+        input[type="radio"]{margin-right: 10px;}
+        input[type="checkbox"]{margin-right: 10px;}
+        input[type="date"]{border:none;_background:none;font-size: 1.1rem;}
+        button{border: none;background:#f0836e; font-size: 15px; padding: 8px 0; color: #ffffff;border-radius: 5px; width: 100%;}
+        ul{margin: 0px ;padding:0px;}
+        li{list-style: none;}
+        .fl{float: left}
+        .fr{float: right;}
+        .clr { zoom:1; }
+        .clr:after { content: "." ;display: block ;  height: 0 ;clear: both;visibility: hidden; }
+        .important_tips{color: red;padding:0 .1rem;}
+        .ques_item{line-height: 2.5rem;border-top:.07rem solid #cccccc;padding:0 1.25rem 0;}
+        .ques_item .ques_name{margin-right:0.625rem;color:#f0836e;font-size: 1rem;line-height: 2.4rem}
+        .ques_item span{font-size: .875rem;}
+        .ques_item .ques_text{line-height: 2.4rem;}
+        .ques_item .ques_text p{margin: 0;line-height: 100%;}
+        .ques_item .ques_text input[type=text], .ques_item .ques_text textarea,.new_bg_icon input{border:none;font-size: 1rem;}
+        .ques_item .ques_text textarea{font-size: 1.1rem}
+        .ques_item .ques_text textarea{height: 1.375rem;margin-top: 0.625rem;line-height: 1rem;}
+        .ques_item .option_wrap span{line-height: 1.5rem;display: inline-block;}
+        .option_wrap>div{overflow: hidden;}
+        /*单选框复选框图标*/
+        .new_bg_icon span{padding-right: 1rem;}
+        .option_wrap >div .new_bg_icon label{display: inline-block;}
+        .option_wrap >div .new_bg_icon label input{position: absolute;left: -9999em;}
+        .option_wrap >div .new_bg_icon label span{text-indent:2rem;}
+        .option_wrap >div .new_bg_icon span{background: url("/static/images/option_bg.png") 0 -2.3rem no-repeat;display: inline-block;background-size:1.5rem}
+        .option_wrap >div .new_bg_icon input:checked + span{background-position: 0 0;}
+        /*单选框复选框图标*/
+        .ques_item .drug_table h6{line-height: 1.5rem;margin: .625rem 0 .625rem 10px;margin: .3125rem 0;font-size: .9rem;}
+        .ques_item .drug_table td{border:none;font-size: 1rem}
+        .ques_item .drug_table table{border-collapse: collapse;width: 100%}
+        .ques_item .drug_table table input{border:none;}
+        .ques_item .drug_table tr{border-bottom: .1rem solid #dddddd;}
+        .address_select select{width: 100%;height:1.75rem;font-size: 1rem;border:none; }
+        .drug_table input{width: 100%;}
+        .drug_table .dug_details{width: 16%;}
+        @media only screen and (min-width: 1024px) {
+            .rich_media {
+                font-family: 'microsoft yahei';
+                width: 740px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        @media only screen and (min-width:768px) and (max-width: 1023px) {
+            /* .drug_table .dug_details{width: 16%;}*/
+        }
+        @media only screen and (min-width:480px) and (max-width:767px){
+            .drug_table .dug_details{width: 28%;}
+        }
+        @media only screen and (min-width:319px) and (max-width:479px){
+            .drug_table .dug_details{width:32%;}
+        }
+
+    </style>
+<script>
+    $(function (){
+        //提交随访,数据验证
+        //地区两级联动
+        $('#province').change(function(){
+            var pid = parseInt($(this).find('option:selected').attr('val'));
+            var obj = $('#city');
+            if ( pid ) {
+                $.ajax({
+                    url:'/shequvisit/getprovince/',
+                    type:'post',
+                    dataType:'json',
+                    data:{'pid':pid},
+                    success:function(data){
+                        if ( data.status<=0 ) {
+                            alert('该省或市下没有数据');
+                            return false;
+                        }
+                        var html = '<option value="0">市/区</option>';
+                        $.each(data.data,function(i,v){
+                            html +='<option value="'+v.name+'">'+v.name+'</option>';
+                        })
+                        $('#city').html(html);
+                    }
+                })
+            }
+        })
+    });
+</script><script id="b5mmain" type="text/javascript" charset="utf-8" src="./visitquestion_files/b5m.main.js"></script><link rel="stylesheet" href="./visitquestion_files/b5m-plugin.css" type="text/css"><link rel="stylesheet" href="./visitquestion_files/b5m.botOrTopBanner.css" type="text/css"></head>
+
+
+
+
+<body class="rich_media">
+<form action="http://lmn.anhaofour.cn/visit/submitvisit/" method="post" class="myform" onsubmit="return submitData(this)">
+        <ul class="ques_list">
+        <li style="font-size:12px;color: #CCCCCC;text-indent: 2em;padding: 8px 0">注：*为必填项</li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">随访日期<span class="important_tips fr" style="font-size: 12px">*</span></div>
+                <div class="fl ques_text">
+                                        <div><input placeholder="选择日期" class="date_input_select" type="text" required="" id="birthday_128" name="question[128][]" readonly=""></div>
+                    <script>
+                        $('#birthday_128').mobiscroll().date({
+                            theme: 'android-holo-light',
+                            mode: 'scroller',
+                            display: 'modal',
+                            lang: 'zh',
+                            dateFormat: 'yyyy-mm-dd',
+                            startYear:1905,
+                            endYear:2038
+                        });
+                    </script>
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">随访方式</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[129][]" value="门诊"><span>门诊</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[129][]" value="家庭"><span>家庭</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[129][]" value="电话"><span>电话</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[129][]" value="客户端"><span>客户端</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                                                <label>
+                                    <input type="radio" name="question[129][]" value="其他"><span>其他</span>
+                                </label>
+                                <input placeholder="点此填写其它方式" onkeydown="if(event.keyCode==13) return false;" type="text" name="question[129][]">
+                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">症状</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="无症状"><span>无症状</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="头痛头晕"><span>头痛头晕</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="恶心呕吐"><span>恶心呕吐</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="眼花耳鸣"><span>眼花耳鸣</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="呼吸困难"><span>呼吸困难</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="心悸胸闷"><span>心悸胸闷</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="鼻衄出血不止"><span>鼻衄出血不止</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="四肢发麻"><span>四肢发麻</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="下肢水肿"><span>下肢水肿</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl option_checkbox">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                                                <label>
+                                    <input type="checkbox" name="question[172][]" value="其他"><span>其他</span>
+                                </label>
+                                <input placeholder="点此填入症状" onkeydown="if(event.keyCode==13) return false;" type="text" name="question[172][]">
+                                                            </span>
+                </div>
+                                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">体征</div>
+                <div class="fl ques_text">
+                                                                                                    <input placeholder="填写内容" type="text" name="question[132][]">
+                                    </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">血压(mmHg)</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[133][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">体重（kg）</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[134][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">体质指数</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[135][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">心率</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[173][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">其他</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[174][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">生活方式指导</div>
+                <div class="fl ques_text">
+                                                                                                    <input placeholder="填写内容" type="text" name="question[138][]">
+                                    </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">日吸烟量（支）</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[139][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">日饮酒量（两）</div>
+                <div class="fl ques_text">
+                                                                                <textarea placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" name="question[140][]"></textarea>
+                                                        </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">运动，每周几次，每次持续多少分钟</div>
+                <div class="fl ques_text">
+                                                            <input placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" type="text" name="question[141][]">
+                                                                            </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">摄盐情况（咸淡）</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[176][]" value="轻"><span>轻</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[176][]" value="中"><span>中</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[176][]" value="重"><span>重</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">心理调整</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[143][]" value="良好"><span>良好</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[143][]" value="一般"><span>一般</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[143][]" value="差"><span>差</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">遵医行为</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[144][]" value="良好"><span>良好</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[144][]" value="一般"><span>一般</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[144][]" value="差"><span>差</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">辅助检查</div>
+                <div class="fl ques_text">
+                                                            <input placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" type="text" name="question[319][]">
+                                                                            </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">服药依从性</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[150][]" value="规律"><span>规律</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[150][]" value="间断"><span>间断</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[150][]" value="不服药"><span>不服药</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">药物不良反应</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[151][]" value="无"><span>无</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[151][]" value="有"><span>有</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                                                <label>
+                                    <input type="radio" name="question[151][]" value="其他"><span>其他</span>
+                                </label>
+                                <input placeholder="点此填写其它方式" onkeydown="if(event.keyCode==13) return false;" type="text" name="question[151][]">
+                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">此次随访分类</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[153][]" value="控制满意"><span>控制满意</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[153][]" value="控制不满意"><span>控制不满意</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[153][]" value="不良反应"><span>不良反应</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                <div class="fl ">
+                            <span class="yy-checkbox-combat new_bg_icon">
+                                                                <label>
+                                    <input type="radio" name="question[153][]" value="并发症"><span>并发症</span>
+                                </label>
+                                                                                            </span>
+                </div>
+                                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">用药情况</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                                                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">转诊的原因，机构及科别</div>
+                <div class="fl ques_text">
+                                                            <input placeholder="填写内容" onkeydown="if(event.keyCode==13) return false;" type="text" name="question[162][]">
+                                                                            </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">下次随访日期</div>
+                <div class="fl ques_text">
+                                        <div><input placeholder="选择日期" class="date_input_select" type="text" id="birthday_163" name="question[163][]" readonly=""></div>
+                    <script>
+                        $('#birthday_163').mobiscroll().date({
+                            theme: 'android-holo-light',
+                            mode: 'scroller',
+                            display: 'modal',
+                            lang: 'zh',
+                            dateFormat: 'yyyy-mm-dd',
+                            startYear:1905,
+                            endYear:2038
+                        });
+                    </script>
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">用药情况3</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                                                                <h6>药物名称1</h6>
+                <table>
+                                        <tbody><tr>
+                        <td class="dug_details">药物名称3</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">其他药物</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">每日（次）</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">每次（mg）</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                    </tbody></table>
+                                <h6>药物名称2</h6>
+                <table>
+                                        <tbody><tr>
+                        <td class="dug_details">药物名称3</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">其他药物</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">每日（次）</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">每次（mg）</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[320][]"></td>
+                    </tr>
+                                    </tbody></table>
+                                                            </div>
+        </li>
+        
+        
+        <li class="ques_item">
+            <div class="clr">
+                <div class="fl ques_name">aqw</div>
+                <div class="fl ques_text">
+                                                                                                </div>
+            </div>
+            <div class="option_wrap clr">
+                <!--单选-->
+                                <!--单选框结束-->
+                <!--这里是复选框-->
+                                <!--复选框结束-->
+            </div>
+            <div class="drug_table">
+                                                                <h6>1</h6>
+                <table>
+                                        <tbody><tr>
+                        <td class="dug_details">w</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[374][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">ws</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[374][]"></td>
+                    </tr>
+                                    </tbody></table>
+                                <h6>2</h6>
+                <table>
+                                        <tbody><tr>
+                        <td class="dug_details">w</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[374][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">ws</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[374][]"></td>
+                    </tr>
+                                    </tbody></table>
+                                <h6>4</h6>
+                <table>
+                                        <tbody><tr>
+                        <td class="dug_details">w</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[374][]"></td>
+                    </tr>
+                                        <tr>
+                        <td class="dug_details">ws</td>
+                        <td><input type="text" if(event.keycode="=13)" return="" false;'="" name="question[374][]"></td>
+                    </tr>
+                                    </tbody></table>
+                                                            </div>
+        </li>
+        
+                    </ul>
+    <div style="text-align: center">
+        <!-- 隐藏表单 -->
+        <input type="hidden" name="vid" ,="" value="212">
+        <input type="hidden" name="uid" ,="" value="10058">
+        <input type="hidden" name="doctor_id" ,="" value="0">
+        <button type="submit" class="submitvisit">提交</button>
+    </div>
+</form>
+
+<div id="_cfgwp"><span isenoughactivedaynum="false" version="6.0.5.7"></span></div></body></html>
